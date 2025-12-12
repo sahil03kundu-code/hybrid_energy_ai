@@ -1,0 +1,233 @@
+import streamlit as st
+import random
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# ─────────────────────────────
+# Sidebar: Project Info & Tips
+# ─────────────────────────────
+st.sidebar.markdown("""
+## 🌱 Hybrid Renewable Energy System
+**Project Overview:**  
+Simulates Solar, Hydro, and Wind energy output, predicts next-hour power, and gives optimization tips.
+
+**Environmental Tips:**  
+- ☀️ Adjust solar panels for max sunlight  
+- 💧 Optimize water flow for hydro turbines  
+- 🌬️ Position wind blades for max wind capture  
+
+**Current Total Power:**  
+""")
+
+# Display total power in sidebar dynamically
+
+
+st.markdown("""
+    <h1 style='text-align: center; color: green;'>
+        🌱 Hybrid Renewable Energy AI Simulator
+    </h1>
+    <p style='text-align: center; color: gray;'>
+        Simulate Solar, Wind, and Hydro energy output like a real smart dashboard
+    </p>
+""", unsafe_allow_html=True)
+
+st.write("This software simulates Solar, Wind, and Hydro energy output based on your real hardware model.")
+
+# ─────────────────────────────
+# 1. User enters hypothetical readings (since no microcontroller)
+# ─────────────────────────────
+st.header("Enter Your Observed Hardware Readings")
+# ─────────────────────────────
+# Digital Twin: Environmental Conditions
+# ─────────────────────────────
+
+
+# ─────────────────────────────
+# Colorful Columns for Inputs
+# ─────────────────────────────
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("<h3 style='text-align: center; color: orange;'>☀️ Solar Panel</h3>", unsafe_allow_html=True)
+    solar_v = st.number_input("Voltage (V)", 0.0, 24.0, 12.0, key="solar_v")
+    solar_i = st.number_input("Current (A)", 0.0, 10.0, 2.0, key="solar_i")
+
+with col2:
+    st.markdown("<h3 style='text-align: center; color: blue;'>💧 Hydro Turbine</h3>", unsafe_allow_html=True)
+    hydro_v = st.number_input("Voltage (V)", 0.0, 24.0, 5.0, key="hydro_v")
+    hydro_i = st.number_input("Current (A)", 0.0, 10.0, 1.5, key="hydro_i")
+
+with col3:
+    st.markdown("<h3 style='text-align: center; color: purple;'>🌬 Wind Generator</h3>", unsafe_allow_html=True)
+    wind_v = st.number_input("Voltage (V)", 0.0, 24.0, 8.0, key="wind_v")
+    wind_i = st.number_input("Current (A)", 0.0, 10.0, 1.0, key="wind_i")
+
+st.header("🌤 Digital Twin Controls (Simulated Environment)")
+sunlight = st.slider("Sunlight Intensity (%)", 0, 100, 70)
+water_flow = st.slider("Water Flow Rate (%)", 0, 100, 60)
+wind_speed = st.slider("Wind Speed (%)", 0, 100, 50)
+
+# Auto-adjust readings based on environment
+solar_v *= (sunlight / 100)
+solar_i *= (sunlight / 100)
+
+hydro_v *= (water_flow / 100)
+hydro_i *= (water_flow / 100)
+
+wind_v *= (wind_speed / 100)
+wind_i *= (wind_speed / 100)
+# ─────────────────────────────
+# 2. Calculate power outputs
+# ─────────────────────────────
+solar_p = solar_v * solar_i
+hydro_p = hydro_v * hydro_i
+wind_p = wind_v * wind_i
+
+
+from sklearn.linear_model import LinearRegression
+
+# Simple prediction based on current total power
+X = [[solar_p + hydro_p + wind_p]]
+y = [solar_p + hydro_p + wind_p]  # since we have only one time point, just echo
+model = LinearRegression()
+model.fit(X, y)
+predicted = model.predict([[solar_p + hydro_p + wind_p]])[0]
+st.sidebar.metric(label="Total Power (W)", value=round(solar_p + hydro_p + wind_p, 2))
+st.sidebar.metric(label="Predicted Next-Hour Output (W)", value=round(predicted, 2))
+
+# ─────────────────────────────
+# Sidebar metrics: display power
+# ─────────────────────────────
+st.sidebar.metric(label="Total Power (W)", value=round(solar_p + hydro_p + wind_p, 2))
+st.sidebar.metric(label="Predicted Next-Hour Output (W)", value=round(predicted, 2))
+
+
+data = {
+    "Source": ["Solar", "Hydro", "Wind"],
+    "Power (W)": [solar_p, hydro_p, wind_p]
+}
+
+df = pd.DataFrame(data)
+st.subheader("Calculated Power Output")
+st.dataframe(df)
+
+# ─────────────────────────────
+# 3. Visualize the power
+# ─────────────────────────────
+st.subheader("📊 Power Comparison Graph")
+
+colors = ['orange', 'blue', 'purple']
+plt.figure(figsize=(6,4))
+plt.bar(df["Source"], df["Power (W)"], color=colors, edgecolor='black')
+plt.title("Power Output per Source", color='green', fontsize=14)
+plt.ylabel("Power (W)", fontsize=12)
+plt.xlabel("Energy Source", fontsize=12)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+st.pyplot(plt)
+
+# ─────────────────────────────
+# 4. AI Insights (simulated machine learning)
+# ─────────────────────────────
+st.subheader("🧠 AI Insight & Digital Twin Alerts")
+
+total = solar_p + hydro_p + wind_p
+
+if total < 20:
+    st.markdown(
+        "<div style='background-color:#ffcccc; padding:10px; border-radius:5px;'>"
+        "<h4>⚠️ Warning!</h4>"
+        "<p>Your total output is very low. Increase sunlight, water flow, or wind speed.</p>"
+        "</div>", unsafe_allow_html=True
+    )
+elif total < 50:
+    st.markdown(
+        "<div style='background-color:#fff3cd; padding:10px; border-radius:5px;'>"
+        "<h4>🙂 Caution</h4>"
+        "<p>System is working moderately. Optimizing conditions will improve output.</p>"
+        "</div>", unsafe_allow_html=True
+    )
+else:
+    st.markdown(
+        "<div style='background-color:#d4edda; padding:10px; border-radius:5px;'>"
+        "<h4>🚀 Excellent!</h4>"
+        "<p>Your hybrid system is performing at high efficiency.</p>"
+        "</div>", unsafe_allow_html=True
+    )
+
+
+
+
+# ─────────────────────────────
+# 5. Simple Machine Learning Prediction (AI model)
+# ─────────────────────────────
+st.header("🔮 AI Prediction for Next Hour Output")
+
+# Prepare training data
+X = df["Power (W)"].values.reshape(-1, 1)
+y = df["Power (W)"].values  # simple prediction
+
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X, y)
+
+predicted = model.predict([[sum([solar_p, hydro_p, wind_p]) / 3]])[0]
+
+st.write(f"**Predicted Power Output Next Hour:** {predicted:.2f} W")
+
+# ─────────────────────────────
+# Sidebar metrics (after calculation)
+# ─────────────────────────────
+st.sidebar.metric(label="Total Power (W)", value=round(solar_p + hydro_p + wind_p, 2))
+st.sidebar.metric(label="Predicted Next-Hour Output (W)", value=round(predicted, 2))
+
+# Optimization tips
+st.subheader("🧠 AI Optimization Tip")
+if solar_p < hydro_p and solar_p < wind_p:
+    st.write("🌞 Increase solar exposure — angle the panel or add reflective surfaces.")
+elif hydro_p < solar_p and hydro_p < wind_p:
+    st.write("💧 Increase water flow or turbine blade efficiency.")
+else:
+    st.write("🌬️ Improve wind direction or increase blade surface area.")
+
+
+# ─────────────────────────────
+# 6. PDF Report Generator
+# ─────────────────────────────
+from fpdf import FPDF
+
+st.header("📄 Generate PDF Report")
+
+if st.button("Create Energy Report PDF"):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+
+    pdf.cell(200, 10, txt="Hybrid Renewable Energy Report", ln=True, align='C')
+    pdf.ln(10)
+
+    pdf.cell(200, 10, txt="--- Input Readings ---", ln=True)
+    pdf.cell(200, 10, txt=f"Solar: {solar_v:.2f}V, {solar_i:.2f}A", ln=True)
+    pdf.cell(200, 10, txt=f"Hydro: {hydro_v:.2f}V, {hydro_i:.2f}A", ln=True)
+    pdf.cell(200, 10, txt=f"Wind: {wind_v:.2f}V, {wind_i:.2f}A", ln=True)
+    pdf.ln(5)
+
+    pdf.cell(200, 10, txt="--- Power Outputs ---", ln=True)
+    pdf.cell(200, 10, txt=f"Solar Power: {solar_p:.2f} W", ln=True)
+    pdf.cell(200, 10, txt=f"Hydro Power: {hydro_p:.2f} W", ln=True)
+    pdf.cell(200, 10, txt=f"Wind Power: {wind_p:.2f} W", ln=True)
+    pdf.ln(5)
+
+    pdf.cell(200, 10, txt="--- AI Prediction ---", ln=True)
+    pdf.cell(200, 10, txt=f"Predicted Next-Hour Output: {predicted:.2f} W", ln=True)
+    pdf.ln(5)
+
+    pdf.output("energy_report.pdf")
+
+    with open("energy_report.pdf", "rb") as f:
+        st.download_button(
+            label="Download PDF Report",
+            data=f,
+            file_name="energy_report.pdf",
+            mime="application/pdf"
+        )
