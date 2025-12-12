@@ -144,6 +144,26 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+from PIL import Image
+import streamlit as st
+
+# Load and display logo at top-left
+logo = Image.open("IMG-20251213-WA0003.jpg")
+st.image(logo, width=90)
+st.set_page_config(
+    page_title="Hybrid Energy System",
+    page_icon="IMG-20251213-WA0003.jpg",
+    layout="wide"
+)
+col1, col2 = st.columns([1, 9])
+
+with col1:
+    st.image(logo, width=70)
+
+with col2:
+    st.markdown("<h1 style='color:#72E7FF;'>Hybrid Renewable Energy System</h1>", unsafe_allow_html=True)
+
+
 st.markdown("""
 <style>
 
