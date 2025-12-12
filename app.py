@@ -3,6 +3,9 @@ import random
 import pandas as pd
 import matplotlib.pyplot as plt
 
+import plotly.graph_objects as go
+
+
 # ─────────────────────────────
 # Sidebar: Project Info & Tips
 # ─────────────────────────────
@@ -114,6 +117,54 @@ st.dataframe(df)
 # ─────────────────────────────
 # 3. Visualize the power
 # ─────────────────────────────
+
+# ─────────────────────────────
+# 🎛 Animated Circular Gauges
+# ─────────────────────────────
+st.subheader("⚡ Live Power Gauges (Animated)")
+
+gauge_col1, gauge_col2, gauge_col3 = st.columns(3)
+
+# Solar Gauge
+with gauge_col1:
+    fig_solar = go.Figure(go.Indicator(
+        mode="gauge+number",
+        value=solar_p,
+        title={'text': "Solar (W)"},
+        gauge={
+            'axis': {'range': [0, max(solar_p, 50)]},
+            'bar': {'color': "orange"}
+        }
+    ))
+    st.plotly_chart(fig_solar, use_container_width=True)
+
+# Hydro Gauge
+with gauge_col2:
+    fig_hydro = go.Figure(go.Indicator(
+        mode="gauge+number",
+        value=hydro_p,
+        title={'text': "Hydro (W)"},
+        gauge={
+            'axis': {'range': [0, max(hydro_p, 50)]},
+            'bar': {'color': "blue"}
+        }
+    ))
+    st.plotly_chart(fig_hydro, use_container_width=True)
+
+# Wind Gauge
+with gauge_col3:
+    fig_wind = go.Figure(go.Indicator(
+        mode="gauge+number",
+        value=wind_p,
+        title={'text': "Wind (W)"},
+        gauge={
+            'axis': {'range': [0, max(wind_p, 50)]},
+            'bar': {'color': "purple"}
+        }
+    ))
+    st.plotly_chart(fig_wind, use_container_width=True)
+
+
 st.subheader("📊 Power Comparison Graph")
 
 colors = ['orange', 'blue', 'purple']
@@ -231,3 +282,68 @@ if st.button("Create Energy Report PDF"):
             file_name="energy_report.pdf",
             mime="application/pdf"
         )
+# ─────────────────────────────
+# 7. Interactive Digital Twin Animation (Super Visual)
+# ─────────────────────────────
+st.header("🌐 Live Digital Twin Animation")
+
+solar_intensity = int(sunlight / 10)
+wind_rotation = int(wind_speed / 10)
+water_level = int(water_flow / 10)
+
+# Create simple live ASCII animation
+solar_display = "☀️" * solar_intensity if solar_intensity > 0 else "☀️"
+wind_display = "🌀" * wind_rotation if wind_rotation > 0 else "🌀"
+water_display = "💧" * water_level if water_level > 0 else "💧"
+
+colA, colB, colC = st.columns(3)
+
+with colA:
+    st.markdown("### Solar Panel\nBrightness:")
+    st.markdown(f"<h2 style='color:orange;'>{solar_display}</h2>", unsafe_allow_html=True)
+
+with colB:
+    st.markdown("### Wind Turbine\nRotation:")
+    st.markdown(f"<h2 style='color:purple;'>{wind_display}</h2>", unsafe_allow_html=True)
+
+with colC:
+    st.markdown("### Water Turbine\nFlow Rate:")
+    st.markdown(f"<h2 style='color:blue;'>{water_display}</h2>", unsafe_allow_html=True)
+
+
+# ─────────────────────────────
+# 8. Voice Assistant (AI Talks to Judges)
+# ─────────────────────────────
+st.header("🗣️ AI Voice Assistant")
+
+import base64
+
+def text_to_speech(text):
+    from gtts import gTTS
+    tts = gTTS(text)
+    tts.save("voice.mp3")
+    with open("voice.mp3", "rb") as f:
+        audio_bytes = f.read()
+    b64 = base64.b64encode(audio_bytes).decode()
+    return f"<audio controls src='data:audio/mp3;base64,{b64}'></audio>"
+
+# Create dynamic voice message
+voice_message = f"""
+Current total power is {total:.2f} watts.
+Solar output is {solar_p:.2f} watts.
+Hydro output is {hydro_p:.2f} watts.
+Wind output is {wind_p:.2f} watts.
+
+AI Suggestion: 
+"""
+
+if solar_p < hydro_p and solar_p < wind_p:
+    voice_message += "Increase solar exposure or panel angle."
+elif hydro_p < solar_p and hydro_p < wind_p:
+    voice_message += "Increase water flow or improve turbine blades."
+else:
+    voice_message += "Wind performance is low. Increase blade area or direction."
+
+if st.button("🔊 Speak Insights"):
+    audio_html = text_to_speech(voice_message)
+    st.markdown(audio_html, unsafe_allow_html=True)
