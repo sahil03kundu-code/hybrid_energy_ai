@@ -651,6 +651,11 @@ if st.button("🔊 Speak Insights"):
     st.markdown(audio_html, unsafe_allow_html=True)
 
 
+st.markdown("""
+<style>
+body { background-color: #111 !important; }
+</style>
+""", unsafe_allow_html=True)
 
 # ---------------------- FOOTER SECTION ----------------------
 st.markdown("""
