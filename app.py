@@ -53,6 +53,48 @@ body {
 }
 </style>
 """, unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+/* Make all labels and small text brighter and fully opaque */
+label, .css-1v3fvcr, .css-1pnq3sl, .stMarkdown, p, span {
+    color: #E6EEF8 !important;
+    opacity: 1 !important;
+    font-weight: 600 !important;
+}
+
+/* Make section titles even brighter */
+.section-title, .glow-title, .neon-header {
+    color: #e6fff6 !important;
+    text-shadow: 0 0 14px rgba(0,234,255,0.16) !important;
+}
+
+/* Slider value (the numeric) — bigger & clearer */
+[data-testid="stSlider"] .css-1dq8tca, .css-9ycgxx {
+    color: #ff6b6b !important;    /* value color */
+    font-weight: 700 !important;
+    font-size: 15px !important;
+}
+
+/* Make the slider track and knob more visible */
+input[type="range"] {
+    accent-color: #ff6b6b !important;
+}
+
+/* For Streamlit's internal slider container (fallback) */
+.stSlider > div, .css-1v3fvcr {
+    color: #E6EEF8 !important;
+    opacity: 1 !important;
+}
+
+/* Ensure sidebar labels are clear too */
+[data-testid="stSidebar"] label, [data-testid="stSidebar"] p {
+    color: #dbeafe !important;
+    opacity: 1 !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 st.markdown("""
 <style>
 
