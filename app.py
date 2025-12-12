@@ -651,39 +651,3 @@ if st.button("🔊 Speak Insights"):
     st.markdown(audio_html, unsafe_allow_html=True)
 
 
-st.markdown("""
-<style>
-body { background-color: #111 !important; }
-</style>
-""", unsafe_allow_html=True)
-
-# ---------------------- FOOTER SECTION ----------------------
-st.markdown("""
-<hr style='border: 1px solid #333;'> 
-
-<div style="padding: 20px; color: white;">
-
-    <h3 style="color:#72E7FF; margin-bottom:10px;">📞 Contact & Helpdesk</h3>
-
-    <div style="margin-bottom:20px;">
-        <p style="font-size:18px; margin:0;">📧 <b>Helpdesk Emails</b></p>
-        <p style="margin:0;">sahil03kundu@gmail.com</p>
-        <p style="margin:0;">mahekg729@gmail.com</p>
-        <p style="margin:0;">chandanchk7654@gmail.com</p>
-    </div>
-
-    <div style="margin-bottom:20px;">
-        <p style="font-size:18px; margin:0;">📱 <b>Contact Numbers</b></p>
-        <p style="margin:0;">9907155437</p>
-        <p style="margin:0;">9123695732</p>
-        <p style="margin:0;">7461868236</p>
-    </div>
-
-    <div>
-        <p style="font-size:18px; margin:0;">ℹ️ <b>Support Availability</b></p>
-        <p style="margin:0;">We are available 24/7 during the judging round.</p>
-    </div>
-
-</div>
-""", unsafe_allow_html=True)
-# ------------------------------------------------------------
