@@ -3,6 +3,101 @@ import random
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# ─────────────────────────────
+# Premium Glass UI
+# ─────────────────────────────
+st.markdown("""
+    <style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 20px;
+        border-radius: 15px;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        margin-bottom: 25px;
+    }
+
+    .neon-header {
+        color: #39FF14;
+        text-shadow: 0 0 10px #39FF14;
+        font-weight: bold;
+    }
+    </style>
+""", unsafe_allow_html=True)
+st.markdown("""
+<style>
+/* Global dark background */
+body {
+    background-color: #0d1117 !important;
+    color: white !important;
+}
+
+/* Streamlit main content */
+[data-testid="stAppViewContainer"] {
+    background-color: #0d1117;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: #111827 !important;
+    color: white !important;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+""", unsafe_allow_html=True)
+st.markdown("""
+<style>
+
+/* Neon Glowing Buttons */
+.neon-btn {
+    background: #14b8a6;
+    color: white;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 12px #14b8a6;
+    transition: 0.2s ease-in-out;
+}
+.neon-btn:hover {
+    box-shadow: 0 0 18px #1fffe0;
+    transform: scale(1.04);
+}
+
+/* Premium Section Cards */
+.section-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 22px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Headings with glow */
+.glow-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #00eaff;
+    text-shadow: 0 0 12px #00eaff;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+
+
+
+
 import plotly.graph_objects as go
 
 
@@ -26,12 +121,14 @@ Simulates Solar, Hydro, and Wind energy output, predicts next-hour power, and gi
 
 
 st.markdown("""
-    <h1 style='text-align: center; color: green;'>
-        🌱 Hybrid Renewable Energy AI Simulator
+<div class="glass-card">
+    <h1 style='text-align: center;' class='neon-header'>
+        🌱 Hybrid Energy AI Simulator
     </h1>
-    <p style='text-align: center; color: gray;'>
-        Simulate Solar, Wind, and Hydro energy output like a real smart dashboard
+    <p style='text-align: center; color: white;'>
+        Smart Digital Twin • Real-time Simulation • AI Predictions
     </p>
+</div>
 """, unsafe_allow_html=True)
 
 st.write("This software simulates Solar, Wind, and Hydro energy output based on your real hardware model.")
@@ -39,7 +136,8 @@ st.write("This software simulates Solar, Wind, and Hydro energy output based on 
 # ─────────────────────────────
 # 1. User enters hypothetical readings (since no microcontroller)
 # ─────────────────────────────
-st.header("Enter Your Observed Hardware Readings")
+st.markdown("<h2 class='section-title'>✨ Enter Your Observed Hardware Readings</h2>", unsafe_allow_html=True)
+
 # ─────────────────────────────
 # Digital Twin: Environmental Conditions
 # ─────────────────────────────
@@ -65,7 +163,8 @@ with col3:
     wind_v = st.number_input("Voltage (V)", 0.0, 24.0, 8.0, key="wind_v")
     wind_i = st.number_input("Current (A)", 0.0, 10.0, 1.0, key="wind_i")
 
-st.header("🌤 Digital Twin Controls (Simulated Environment)")
+st.markdown("<h2 class='section-title'>🌤 Digital Twin Controls (Simulated Environment)</h2>", unsafe_allow_html=True)
+
 sunlight = st.slider("Sunlight Intensity (%)", 0, 100, 70)
 water_flow = st.slider("Water Flow Rate (%)", 0, 100, 60)
 wind_speed = st.slider("Wind Speed (%)", 0, 100, 50)
@@ -212,7 +311,8 @@ else:
 # ─────────────────────────────
 # 5. Simple Machine Learning Prediction (AI model)
 # ─────────────────────────────
-st.header("🔮 AI Prediction for Next Hour Output")
+st.markdown("<h2 class='section-title'>🔮 AI Prediction for Next Hour Output</h2>", unsafe_allow_html=True)
+
 
 # Prepare training data
 X = df["Power (W)"].values.reshape(-1, 1)
@@ -247,7 +347,8 @@ else:
 # ─────────────────────────────
 from fpdf import FPDF
 
-st.header("📄 Generate PDF Report")
+st.markdown("<h2 class='section-title'>📄 Generate PDF Report</h2>", unsafe_allow_html=True)
+
 
 if st.button("Create Energy Report PDF"):
     pdf = FPDF()
@@ -285,7 +386,8 @@ if st.button("Create Energy Report PDF"):
 # ─────────────────────────────
 # 7. Interactive Digital Twin Animation (Super Visual)
 # ─────────────────────────────
-st.header("🌐 Live Digital Twin Animation")
+st.markdown("<h2 class='section-title'>🌐 Live Digital Twin Animation</h2>", unsafe_allow_html=True)
+
 
 solar_intensity = int(sunlight / 10)
 wind_rotation = int(wind_speed / 10)
@@ -314,7 +416,8 @@ with colC:
 # ─────────────────────────────
 # 8. Voice Assistant (AI Talks to Judges)
 # ─────────────────────────────
-st.header("🗣️ AI Voice Assistant")
+st.markdown("<h2 class='section-title'>🗣️ AI Voice Assistant</h2>", unsafe_allow_html=True)
+
 
 import base64
 
