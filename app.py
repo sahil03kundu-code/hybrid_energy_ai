@@ -370,31 +370,46 @@ st.pyplot(plt)
 # ─────────────────────────────
 # 4. AI Insights (simulated machine learning)
 # ─────────────────────────────
+# ─────────────────────────────
+# 4. AI Insights (simulated machine learning)
+# ─────────────────────────────
 st.subheader("🧠 AI Insight & Digital Twin Alerts")
 
 total = solar_p + hydro_p + wind_p
 
 if total < 20:
     st.markdown(
-        "<div style='background-color:#ffcccc; padding:10px; border-radius:5px;'>"
-        "<h4>⚠️ Warning!</h4>"
-        "<p>Your total output is very low. Increase sunlight, water flow, or wind speed.</p>"
-        "</div>", unsafe_allow_html=True
+        """
+        <div style='background-color:#8B0000; padding:15px; border-radius:10px;'>
+            <h4 style='color:white;'>⚠️ WARNING</h4>
+            <p style='color:white;'>Your total output is very low. Increase sunlight, water flow, or wind speed.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
     )
+
 elif total < 50:
     st.markdown(
-        "<div style='background-color:#fff3cd; padding:10px; border-radius:5px;'>"
-        "<h4>🙂 Caution</h4>"
-        "<p>System is working moderately. Optimizing conditions will improve output.</p>"
-        "</div>", unsafe_allow_html=True
+        """
+        <div style='background-color:#B8860B; padding:15px; border-radius:10px;'>
+            <h4 style='color:white;'>🙂 CAUTION</h4>
+            <p style='color:white;'>System is working moderately. Optimizing conditions will improve output.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
     )
+
 else:
     st.markdown(
-        "<div style='background-color:#d4edda; padding:10px; border-radius:5px;'>"
-        "<h4>🚀 Excellent!</h4>"
-        "<p>Your hybrid system is performing at high efficiency.</p>"
-        "</div>", unsafe_allow_html=True
+        """
+        <div style='background-color:#006400; padding:15px; border-radius:10px;'>
+            <h4 style='color:white;'>🚀 EXCELLENT</h4>
+            <p style='color:white;'>Your hybrid system is performing at high efficiency.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
     )
+
 
 
 
