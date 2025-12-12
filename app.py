@@ -222,6 +222,99 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+
+st.markdown("""
+<style>
+
+/* ---------- GENERAL TEXT VISIBILITY ---------- */
+h1, h2, h3, h4, h5, h6, p, label, span, div {
+    color: #E8E8E8 !important;     /* Bright gray text for visibility */
+}
+
+/* ---------- SECTION HEADERS ---------- */
+h1, h2, h3 {
+    font-weight: 700 !important;
+    color: #ffffff !important;     /* Full white headers */
+    text-shadow: 0px 0px 8px rgba(255,255,255,0.25);
+}
+
+/* ---------- SLIDER LABEL FIX ---------- */
+.css-81oif8, .css-1pz7awu, .css-10trblm, .css-16idsys {
+    color: #E8E8E8 !important;
+}
+
+/* ---------- WARNING / CAUTION / SUCCESS BOXES ---------- */
+.warning-box {
+    background-color: #8B0000 !important;    /* Dark red */
+    border: 2px solid #FF4C4C !important;
+    color: white !important;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.caution-box {
+    background-color: #996c00 !important;
+    border: 2px solid #FFD54F !important;
+    color: black !important;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.success-box {
+    background-color: #004d1a !important;
+    border: 2px solid #00FF88 !important;
+    color: white !important;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+/* ---------- BUTTON VISIBILITY FIX ---------- */
+div.stButton > button {
+    color: #ffffff !important;                
+    font-weight: 600 !important;
+    background-color: #2b2f38 !important;     
+    border: 2px solid #6C63FF !important;     
+    padding: 10px 18px !important;
+    border-radius: 12px !important;
+}
+
+div.stButton > button:hover {
+    background-color: #6C63FF !important;
+    color: white !important;
+    transform: scale(1.03);
+    transition: 0.2s;
+}
+
+/* ---------- GAUGE HEADER VISIBILITY ---------- */
+.block-container h2, .block-container h3 {
+    color: white !important;
+}
+
+/* ---------- SIDEBAR TEXT ---------- */
+.sidebar .sidebar-content, .css-1d391kg {
+    color: #E8E8E8 !important;
+}
+
+/* ---------- CARDS (GLASS UI) ---------- */
+.glass-card {
+    background: rgba(255, 255, 255, 0.10);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    margin-bottom: 25px;
+}
+
+.neon-header {
+    color: #39FF14 !important;
+    text-shadow: 0 0 12px #39FF14;
+    font-weight: bold;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 st.write("This software simulates Solar, Wind, and Hydro energy output based on your real hardware model.")
 
 # ─────────────────────────────
