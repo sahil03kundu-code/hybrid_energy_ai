@@ -652,62 +652,58 @@ if st.button("🔊 Speak Insights"):
 
 
 
-st.markdown("""
-<style>
-.footer-section {
-    background-color: #1f2937; 
-    padding: 40px 20px;
-    margin-top: 40px;
-    color: #e5e7eb;
-}
+st.markdown(
+    """
+    <style>
+        .custom-footer {
+            background-color: #111827;
+            padding: 40px 10%;
+            color: #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 80px;
+            border-top: 2px solid #6b7280;
+        }
+        .footer-column-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .footer-item a {
+            color: #93c5fd;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .footer-item {
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+        .footer-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
 
-.footer-column-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: #ffffff;
-}
-
-.footer-item {
-    margin: 6px 0;
-    font-size: 16px;
-}
-
-.footer-item a {
-    color: #93c5fd;
-    text-decoration: none;
-}
-
-.footer-item a:hover {
-    color: #bfdbfe;
-    text-decoration: underline;
-}
-
-</style>
-
-<div class="footer-section">
-    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; text-align: left;">
-
+    <div class="custom-footer">
         <div>
-            <p class="footer-column-title">Helpdesk Emails</p>
-            <p class="footer-item">📧 <a href="mailto:sahil03kundu@gmail.com">sahil03kundu@gmail.com</a></p>
-            <p class="footer-item">📧 <a href="mailto:mahekg729@gmail.com">mahekg729@gmail.com</a></p>
-            <p class="footer-item">📧 <a href="mailto:chandanchk7654@gmail.com">chandanchk7654@gmail.com</a></p>
+            <p class="footer-column-title">📧 Helpdesk Emails</p>
+            <p class="footer-item"><a href="mailto:sahil03kundu@gmail.com">sahil03kundu@gmail.com</a></p>
+            <p class="footer-item"><a href="mailto:mahekg729@gmail.com">mahekg729@gmail.com</a></p>
+            <p class="footer-item"><a href="mailto:chandanchk7654@gmail.com">chandanchk7654@gmail.com</a></p>
         </div>
 
         <div>
-            <p class="footer-column-title">Contact Numbers</p>
-            <p class="footer-item">📱 9907155437</p>
-            <p class="footer-item">📱 9123695732</p>
-            <p class="footer-item">📱 7461868236</p>
+            <p class="footer-column-title">📞 Contact Numbers</p>
+            <p class="footer-item">9907155437</p>
+            <p class="footer-item">9123695732</p>
+            <p class="footer-item">7461868236</p>
         </div>
 
         <div>
-            <p class="footer-column-title">Support Information</p>
+            <p class="footer-column-title">ℹ️ Support Information</p>
             <p class="footer-item">We are available 24/7 during the judging round.</p>
-            <p class="footer-item">Feel free to contact us for any issues or clarifications.</p>
         </div>
-
     </div>
-</div>
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
