@@ -652,58 +652,33 @@ if st.button("🔊 Speak Insights"):
 
 
 
-st.markdown(
-    """
-    <style>
-        .custom-footer {
-            background-color: #111827;
-            padding: 40px 10%;
-            color: #e5e7eb;
-            display: flex;
-            justify-content: space-between;
-            margin-top: 80px;
-            border-top: 2px solid #6b7280;
-        }
-        .footer-column-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 10px;
-        }
-        .footer-item a {
-            color: #93c5fd;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        .footer-item {
-            margin-bottom: 6px;
-            font-size: 15px;
-        }
-        .footer-item a:hover {
-            text-decoration: underline;
-        }
-    </style>
+# ---------------------- FOOTER SECTION ----------------------
+st.markdown("""
+<hr style='border: 1px solid #333;'> 
 
-    <div class="custom-footer">
-        <div>
-            <p class="footer-column-title">📧 Helpdesk Emails</p>
-            <p class="footer-item"><a href="mailto:sahil03kundu@gmail.com">sahil03kundu@gmail.com</a></p>
-            <p class="footer-item"><a href="mailto:mahekg729@gmail.com">mahekg729@gmail.com</a></p>
-            <p class="footer-item"><a href="mailto:chandanchk7654@gmail.com">chandanchk7654@gmail.com</a></p>
-        </div>
+<div style="padding: 20px; color: white;">
 
-        <div>
-            <p class="footer-column-title">📞 Contact Numbers</p>
-            <p class="footer-item">9907155437</p>
-            <p class="footer-item">9123695732</p>
-            <p class="footer-item">7461868236</p>
-        </div>
+    <h3 style="color:#72E7FF; margin-bottom:10px;">📞 Contact & Helpdesk</h3>
 
-        <div>
-            <p class="footer-column-title">ℹ️ Support Information</p>
-            <p class="footer-item">We are available 24/7 during the judging round.</p>
-        </div>
+    <div style="margin-bottom:20px;">
+        <p style="font-size:18px; margin:0;">📧 <b>Helpdesk Emails</b></p>
+        <p style="margin:0;">sahil03kundu@gmail.com</p>
+        <p style="margin:0;">mahekg729@gmail.com</p>
+        <p style="margin:0;">chandanchk7654@gmail.com</p>
     </div>
-    """,
-    unsafe_allow_html=True
-)
+
+    <div style="margin-bottom:20px;">
+        <p style="font-size:18px; margin:0;">📱 <b>Contact Numbers</b></p>
+        <p style="margin:0;">9907155437</p>
+        <p style="margin:0;">9123695732</p>
+        <p style="margin:0;">7461868236</p>
+    </div>
+
+    <div>
+        <p style="font-size:18px; margin:0;">ℹ️ <b>Support Availability</b></p>
+        <p style="margin:0;">We are available 24/7 during the judging round.</p>
+    </div>
+
+</div>
+""", unsafe_allow_html=True)
+# ------------------------------------------------------------
