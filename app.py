@@ -95,6 +95,55 @@ input[type="range"] {
 </style>
 """, unsafe_allow_html=True)
 
+
+st.markdown("""
+<style>
+
+    /* -------------------------------
+       Glassmorphism Card Styling
+    --------------------------------*/
+    .glass-card {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 20px;
+        border-radius: 15px;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        margin-bottom: 25px;
+    }
+
+    /* -------------------------------
+       NEON HEADER (Optional)
+    --------------------------------*/
+    .neon-header {
+        color: #39FF14;
+        text-shadow: 0 0 10px #39FF14;
+        font-weight: bold;
+    }
+
+    /* -------------------------------
+       GLOBAL BRIGHT HEADERS FIX
+       This ensures ALL section headers
+       like "Calculated Power Output"
+       and "Live Power Gauges" become visible.
+    --------------------------------*/
+    h1, h2, h3, h4, h5 {
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        text-shadow: 0 0 12px rgba(255,255,255,0.65);
+        margin-top: 20px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Make section titles slightly larger */
+    h2 {
+        font-size: 28px !important;
+    }
+
+</style>
+""", unsafe_allow_html=True)
+
 st.markdown("""
 <style>
 
