@@ -3,6 +3,6 @@ matplotlib
 pandas
 numpy
 scikit-learn
-fpdf
+fpdf2
 plotly
 gtts
